@@ -1,20 +1,22 @@
-#ifndef GRAPHS_HPP
-#define GRAPHS_HPP
+#ifndef SUBJECT_HPP
+#define SUBJECT_HPP
 #include <bits/stdc++.h>
-using namespace std;
+using namespace std; 
 
-class Graph{
+class Subject{
     public:
-    char *name;
+    string name;
     int code;
     int credits;
-    int q_edges;
-    vector <Graph> edges;
-    Graph();
-    Graph(char matter_name[20], int code, int credits);
-    ~Graph();
-    void Insert_Edge(Graph *matter = 0);
-    void Remove_Edge(Graph *matter = 0);
-    void Show();
+    int quantity_prerequisites;
+    set<Subject> prerequisites;
+    Subject();
+    Subject(string subject_name, int code, int credits);
+    ~Subject();
+    void insert_prerequisite(Subject *subject);
+    void remove_prerequisite(Subject *subject);
+    void show_prerequisites();
+    void show_subject();
+    bool operator<(const Subject &subject) const;
 };
 #endif
