@@ -11,14 +11,13 @@ int main(){
     mais_um->insert_prerequisite(outra_aqui);
     opa->insert_prerequisite(other);
     opa->insert_prerequisite(mais_um);
-    
+/*    
     opa->show_prerequisites();
     opa->show_subject();
     cout << "-----------\n";
     mais_um->show_prerequisites();
-
+*/
     stack<Subject> mds = bfs_changed(*opa);
-    cout << "Size: " << mds.size() << endl;
  /*   while(!mds.empty()){
     	cout << mds.top().name << endl;
     	mds.pop();
