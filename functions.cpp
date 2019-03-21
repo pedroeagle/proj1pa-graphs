@@ -17,8 +17,10 @@ stack<Subject> bfs_changed(Subject desired_subject){
 		auto subject = to_visit.front();
 		to_visit.pop();
 		cout << "Subject: " << subject.name << endl;
+		subject.show_prerequisites();
 		for(auto prerequisite : subject.prerequisites){
 			cerr << "Entrou no for auto\n";
+			cerr << "Prerequisite: " << prerequisite.name << endl;
 			if(visited_subjects.count(prerequisite) == 0){
 				cerr << "Entrou no if\n";
 				visited_subjects.insert(prerequisite);
