@@ -34,7 +34,5 @@ int main(){
         p.show_prerequisites();
         cout<<"--------------------"<<endl;
     }
-
-
     return 0;
 }

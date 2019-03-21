@@ -4,7 +4,9 @@ Subject::Subject(){
 
 }
 Subject::Subject(string subject_name, int code, int credits){
+
 	quantity_prerequisites = 0;
+
     this->name = subject_name;
     this->code = code;
     this->credits = credits;
@@ -17,6 +19,7 @@ void Subject::insert_prerequisite(Subject *subject){
     	prerequisites.insert(*(subject));
 		quantity_prerequisites++;
 	}
+    //tenho que passar por todas os galhos para verificar a presença da matéria removida
 }
 
 void Subject::remove_prerequisite(Subject *subject){
