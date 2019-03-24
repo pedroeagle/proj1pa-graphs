@@ -16,10 +16,13 @@ stack<Subject> bfs_changed(Subject desired_subject){
 		auto subject = to_visit.front();
 		to_visit.pop();
 		for(auto prerequisite : subject.prerequisites){
-			if(visited_subjects.count(prerequisite) == 0){
-				visited_subjects.insert(prerequisite);
-				to_visit.push(prerequisite);
-				subjects_order.push(prerequisite);
+			if(visited_subjects.count(*prerequisite) == 0){
+				visited_subjects.insert(*prerequisite);
+				to_visit.push(*prerequisite);
+				subjects_order.push(*prerequisite);
+			}
+			if(subjects_order.top().name!=prerequisite->name){
+				subjects_order.push(*prerequisite);
 			}
 		}
 	}
@@ -34,13 +37,15 @@ void show_schedule(stack<Subject> subjects_order){
 		queue<Subject> semester_subjects;
 		while(prerequisites_concluded&&!subjects_order.empty()){
 			auto subject = subjects_order.top();
-			for(auto prerequisite : subject.prerequisites){
-				if(concluded_subjects.count(prerequisite) == 0){
+			for(auto *prerequisite : subject.prerequisites){
+				if(concluded_subjects.count(*prerequisite) == 0){
 					prerequisites_concluded = false;
 				}
 			}
 			if(prerequisites_concluded){
-				semester_subjects.push(subject);
+				if(concluded_subjects.count(subject)==0){
+					semester_subjects.push(subject);
+				}
 				subjects_order.pop();
 			}
 		}

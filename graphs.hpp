@@ -9,7 +9,7 @@ class Subject{
     int code;
     int credits;
     int quantity_prerequisites;
-    set<Subject> prerequisites;
+    set<Subject*> prerequisites;
     Subject();
     Subject(string subject_name, int code, int credits);
     ~Subject();

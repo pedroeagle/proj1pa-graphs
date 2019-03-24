@@ -4,7 +4,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 int main(){
- /*   
+    
     Subject *eps, *tppe, *ts, *mds, *oo, *apc, *comp, *ed1;
     eps = new Subject("EPS", 12345, 4);
     tppe = new Subject("TPPE", 12345, 4);
@@ -16,9 +16,11 @@ int main(){
     ed1 = new Subject("ED1", 12345, 4);
     
     ed1->insert_prerequisite(apc);
-    oo->insert_prerequisite(apc);
+    
     comp->insert_prerequisite(ed1);
+
     mds->insert_prerequisite(oo);
+    oo->insert_prerequisite(apc);
     ts->insert_prerequisite(mds);
     tppe->insert_prerequisite(ts);
     tppe->insert_prerequisite(comp);
@@ -39,17 +41,19 @@ int main(){
         p.show_prerequisites();
         cout<<"--------------------"<<endl;
     }
-*/
-    Subject *opa, *other, *mais_um, *outra_aqui;
+/*
+    Subject *opa, *other, *mais_um, *outra_aqui, *apc;
     opa = new Subject("eda", 12345, 4);
     other = new Subject("oo", 54321, 6);
     mais_um = new Subject("c2", 12312, 6);
     outra_aqui = new Subject("c1", 12312, 6);
+    apc = new Subject("apc", 12313, 6);
     mais_um->insert_prerequisite(outra_aqui);
+    other->insert_prerequisite(apc);
     opa->insert_prerequisite(other);
     opa->insert_prerequisite(mais_um);
-    
-    stack<Subject> subject_order = bfs_changed(*opa);
+ */   
+    stack<Subject> subject_order = bfs_changed(*eps);
    /* cout << subject_order.size() << endl;
     while(!subject_order.empty()){
         subject_order.top().show_subject();
