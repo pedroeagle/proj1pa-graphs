@@ -17,6 +17,7 @@ class Subject{
     void remove_prerequisite(Subject *subject);
     void show_prerequisites();
     void show_subject();
+    void count_prerequisites(Subject subject);
     bool operator<(const Subject &subject) const;
 };
 #endif

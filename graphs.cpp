@@ -16,7 +16,6 @@ Subject::~Subject(){
 void Subject::insert_prerequisite(Subject *subject){
     if(subject){
     	prerequisites.insert(subject);
-		quantity_prerequisites++;
 	}
     //tenho que passar por todas os galhos para verificar a presença da matéria removida
 }
@@ -25,7 +24,6 @@ void Subject::remove_prerequisite(Subject *subject){
 	if(subject){
 		if(prerequisites.count(subject)!=0){
 			prerequisites.erase(subject);
-			quantity_prerequisites--;
 		}
 	}
 }
@@ -42,6 +40,28 @@ void Subject::show_subject(){
 	cout << "Credits: " << credits << endl << endl;
 }
 
+void Subject::count_prerequisites(Subject subject){
+	set<Subject> visited_subjects;
+	queue<Subject> to_visit;
+	to_visit.push(subject);
+	visited_subjects.insert(subject);
+
+	while(!to_visit.empty()){
+		auto subject = to_visit.front();
+		to_visit.pop();
+		for(auto prerequisite : subject.prerequisites){
+			if(visited_subjects.count(*prerequisite) == 0){
+				visited_subjects.insert(*prerequisite);
+				to_visit.push(*prerequisite);
+			}
+		}
+	}
+	quantity_prerequisites = visited_subjects.size()-1;
+}
+
 bool Subject::operator<(const Subject &subject) const{
-	return name < subject.name;
+	if(quantity_prerequisites==subject.quantity_prerequisites){
+		return name < subject.name;
+	}
+	return quantity_prerequisites > subject.quantity_prerequisites;
 }
