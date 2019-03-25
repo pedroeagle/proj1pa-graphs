@@ -32,12 +32,14 @@ stack<Subject> bfs_changed(Subject desired_subject){
 
 void show_schedule(stack<Subject> subjects_order){
 	set<Subject> concluded_subjects;
-	for(int semester = 1; !subjects_order.empty(); semester++){
+	for(int semester = 1; /*!subjects_order.empty()*/ semester<10; semester++){
 		bool prerequisites_concluded = true;
 		queue<Subject> semester_subjects;
 		while(prerequisites_concluded&&!subjects_order.empty()){
 			auto subject = subjects_order.top();
-			for(auto *prerequisite : subject.prerequisites){
+			cout << subject.name << endl;
+			for(auto prerequisite : subject.prerequisites){
+				cout << "Analisando prerequisitos\n";
 				if(concluded_subjects.count(*prerequisite) == 0){
 					prerequisites_concluded = false;
 				}
