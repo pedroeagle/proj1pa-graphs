@@ -4,9 +4,8 @@ Subject::Subject(){
  
 }
 Subject::Subject(string subject_name, int code, int credits){
-
 	quantity_prerequisites = 0;
-
+	
     this->name = subject_name;
     this->code = code;
     this->credits = credits;
