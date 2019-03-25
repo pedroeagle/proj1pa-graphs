@@ -183,12 +183,6 @@ int main(){
     } 
   
     priority_queue<Subject> subject_order = bfs_changed(*eps);
-/*
-    while(!subject_order.empty()){
-        cout << subject_order.top().name << endl;
-        subject_order.pop();
-    }
-*/
     show_schedule(subject_order);
   
     return 0;
