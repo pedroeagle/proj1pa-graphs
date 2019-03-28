@@ -8,17 +8,18 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Vector;
 
-import static java.sql.DriverManager.println;
+
 
 public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Main();
 
     }
@@ -72,13 +73,31 @@ public class MainActivity extends AppCompatActivity {
     Subject pi1 = new Subject("Projeto Integrador de Engenharia 1", 193861, 4);
     Subject rs = new Subject("Requisitos de Software", 201308, 4);
 
+    void count_prerequisites(Subject subject){
+        ArrayList<Subject> visited_subjects = new ArrayList<>();
+        Vector<Subject> to_visit = new Vector<Subject>();
+        to_visit.add(subject);
+        visited_subjects.add(subject);
+        while(to_visit.isEmpty()){
+            Subject sub = to_visit.firstElement();
+            to_visit.removeElement(sub);
+
+            for(Iterator it = subject.prerequisites.iterator(); it.hasNext();){
+                if(visited_subjects.isEmpty()){
+                    visited_subjects.add((com.pa.fluxo.Subject) it.next());
+                    to_visit.add((com.pa.fluxo.Subject) it.next());
+                }
+            }
+        }
+        subject.quantity_prerequisites = visited_subjects.size()-1;
+    }
+
     protected void Main() {
         Spinner select_subject = (Spinner) findViewById(R.id.my_spinner);
         materias.add(pi2);
 
 
         //inserção de pré-requisitos
-        /*
         pi2.add_prerequisite(eps);
         eps.add_prerequisite(tppe);
         gces.add_prerequisite(ts);
@@ -116,48 +135,47 @@ public class MainActivity extends AppCompatActivity {
         peae.add_prerequisite(c1);
 
         //Contagem de pré requisitos
-
-        pi2.count_prerequisites(pi2);
-        eps.count_prerequisites(eps);
-        tppe.count_prerequisites(tppe);
-        ts.count_prerequisites(ts);
-        mds.count_prerequisites(mds);
-        oo.count_prerequisites(oo);
-        apc.count_prerequisites(apc);
-        comp.count_prerequisites(comp);
-        ed1.count_prerequisites(ed1);
-        pp.count_prerequisites(pp);
-        ads.count_prerequisites(ads);
-        gces.count_prerequisites(gces);
-        fse.count_prerequisites(fse);
-        fso.count_prerequisites(fso);
-        fac.count_prerequisites(fac);
-        ted_ped.count_prerequisites(ted_ped);
-        ial.count_prerequisites(ial);
-        pspd.count_prerequisites(pspd);
-        ed2.count_prerequisites(ed2);
-        frc.count_prerequisites(frc);
-        sbd2.count_prerequisites(sbd2);
-        sbd1.count_prerequisites(sbd1);
-        md2.count_prerequisites(md2);
-        md1.count_prerequisites(md1);
-        pa.count_prerequisites(pa);
-        qs.count_prerequisites(qs);
-        gpq.count_prerequisites(gpq);
-        ee.count_prerequisites(ee);
-        ihc.count_prerequisites(ihc);
-        diac.count_prerequisites(diac);
-        hc.count_prerequisites(hc);
-        mne.count_prerequisites(mne);
-        c2.count_prerequisites(c2);
-        c1.count_prerequisites(c1);
-        f1.count_prerequisites(f1);
-        f1e.count_prerequisites(f1e);
-        peae.count_prerequisites(peae);
-        ea.count_prerequisites(ea);
-        ie.count_prerequisites(ie);
-        pi1.count_prerequisites(pi1);
-        rs.count_prerequisites(rs);*/
+        count_prerequisites(pi2);
+        count_prerequisites(eps);
+        count_prerequisites(tppe);
+        count_prerequisites(ts);
+        count_prerequisites(mds);
+        count_prerequisites(oo);
+        count_prerequisites(apc);
+        count_prerequisites(comp);
+        count_prerequisites(ed1);
+        count_prerequisites(pp);
+        count_prerequisites(ads);
+        count_prerequisites(gces);
+        count_prerequisites(fse);
+        count_prerequisites(fso);
+        count_prerequisites(fac);
+        count_prerequisites(ted_ped);
+        count_prerequisites(ial);
+        count_prerequisites(pspd);
+        count_prerequisites(ed2);
+        count_prerequisites(frc);
+        count_prerequisites(sbd2);
+        count_prerequisites(sbd1);
+        count_prerequisites(md2);
+        count_prerequisites(md1);
+        count_prerequisites(pa);
+        count_prerequisites(qs);
+        count_prerequisites(gpq);
+        count_prerequisites(ee);
+        count_prerequisites(ihc);
+        count_prerequisites(diac);
+        count_prerequisites(hc);
+        count_prerequisites(mne);
+        count_prerequisites(c2);
+        count_prerequisites(c1);
+        count_prerequisites(f1);
+        count_prerequisites(f1e);
+        count_prerequisites(peae);
+        count_prerequisites(ea);
+        count_prerequisites(ie);
+        count_prerequisites(pi1);
+        count_prerequisites(rs);
 
 
 

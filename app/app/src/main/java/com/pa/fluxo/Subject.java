@@ -16,7 +16,8 @@ public class Subject {
     int code;
     int credits;
     int quantity_prerequisites;
-    HashSet<Subject> prerequisites = new HashSet<Subject>();
+    ArrayList<Subject> prerequisites = new ArrayList<Subject>();
+
 
     public Subject() {
 
@@ -59,24 +60,7 @@ public class Subject {
         System.out.println("Code: " + code );
         System.out.println("Credits: " + credits );
     }
-    void count_prerequisites(Subject subject){
-        HashSet<Subject> visited_subjects = new HashSet<Subject>();
-        Vector<Subject> to_visit = new Vector<Subject>();
-        to_visit.add(subject);
-        visited_subjects.add(subject);
-        while(to_visit.size()>0){
-            Subject sub = to_visit.firstElement();
-            to_visit.remove(0);
 
-            for(Iterator it = prerequisites.iterator(); it.hasNext();){
-                if(visited_subjects.isEmpty()){
-                    visited_subjects.add((com.pa.fluxo.Subject) it.next());
-                    to_visit.add((com.pa.fluxo.Subject) it.next());
-                }
-            }
-        }
-        quantity_prerequisites = visited_subjects.size()-1;
-    }
 
     /*
     bool Subject::operator<(const Subject &subject) const{
