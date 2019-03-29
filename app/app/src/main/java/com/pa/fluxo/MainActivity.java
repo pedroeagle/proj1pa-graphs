@@ -5,13 +5,18 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;
 
+import static java.sql.DriverManager.println;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -19,8 +24,22 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         Main();
+        TextView text = (TextView) findViewById(R.id.textView);
+        Subject t;
+        //text.setText(pi2.name);
+        Functions f = new Functions();
+        LinkedList<Subject> sub_list = new LinkedList<>();
+        sub_list = f.bfs_changed(mds);
+        String s = new String();
+        for(Subject i: sub_list){
+            s+=i.name;
+        }
+        text.setText(s);
+
+
+
+
 
     }
 
@@ -231,6 +250,9 @@ public class MainActivity extends AppCompatActivity {
                 android.R.layout.simple_spinner_item, names);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         select_subject.setAdapter(dataAdapter);
+
+        //pi2.show_prerequisites();
+
     }
 
 }

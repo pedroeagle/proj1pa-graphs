@@ -1,30 +1,38 @@
 package com.pa.fluxo;
 
-public class Functions {
-    /*void List<Subject> bfs_changed(Subject desired_subject){
-        set<Subject> visited_subjects;
-        priority_queue<Subject> subjects_order;
-        queue<Subject> to_visit;
-        to_visit.push(desired_subject);
-        visited_subjects.insert(desired_subject);
-        subjects_order.push(desired_subject);
+import android.widget.Toast;
 
-        while(!to_visit.empty()){
-            auto subject = to_visit.front();
-            to_visit.pop();
-            for(auto prerequisite : subject.prerequisites){
-                if(visited_subjects.count(*prerequisite) == 0){
-                    visited_subjects.insert(*prerequisite);
-                    to_visit.push(*prerequisite);
-                    subjects_order.push(*prerequisite);
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
+
+public class Functions {
+    Functions(){
+
+    }
+    LinkedList<Subject> bfs_changed(Subject desired_subject){
+        LinkedList<Subject> visited_subjects = new LinkedList<>();
+        LinkedList<Subject> subjects_order = new LinkedList<>();
+        LinkedList<Subject> to_visit = new LinkedList<>();
+        to_visit.addLast(desired_subject);
+        visited_subjects.addLast(desired_subject);
+        subjects_order.addLast(desired_subject);
+
+        while(!to_visit.isEmpty()){
+            Subject subject = to_visit.getFirst();
+            to_visit.removeFirst();
+            for (Subject prerequisite :subject.prerequisites) {
+                if(!visited_subjects.contains(prerequisite)){
+                    visited_subjects.addLast(prerequisite);
+                    to_visit.addLast(prerequisite);
+                    subjects_order.addLast(prerequisite);
                 }
             }
         }
-
         return subjects_order;
     }
 
-    void show_schedule(priority_queue<Subject> subjects_order){
+    /*void show_schedule(priority_queue<Subject> subjects_order){
         set<Subject> concluded_subjects;
         for(int semester = 1; !subjects_order.empty(); semester++){
             bool prerequisites_concluded = true;

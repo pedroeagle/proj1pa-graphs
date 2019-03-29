@@ -1,6 +1,8 @@
 package com.pa.fluxo;
 
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -16,7 +18,8 @@ public class Subject {
     int code;
     int credits;
     int quantity_prerequisites;
-    ArrayList<Subject> prerequisites = new ArrayList<Subject>();
+    public ArrayList<Subject> prerequisites = new ArrayList<Subject>();
+    TextView text;
 
 
     public Subject() {
@@ -48,17 +51,19 @@ public class Subject {
 
     void show_prerequisites(){
 
-        for(Iterator it = prerequisites.iterator(); it.hasNext();){
+        for(Iterator it = prerequisites.iterator(); it.hasNext();it.next()){
             Subject element = new Subject();
             element = (com.pa.fluxo.Subject) it.next();
             element.show_subject();
         }
     }
 
-    void show_subject(){
-        System.out.println("Name: " + name );
-        System.out.println("Code: " + code );
-        System.out.println("Credits: " + credits );
+    ArrayList<String> show_subject(){
+        ArrayList<String> s = new ArrayList<>();
+        s.add("Name: "+name );
+        s.add("Code: "+ code);
+        s.add("Credits: " + credits);
+        return s;
     }
 
 
