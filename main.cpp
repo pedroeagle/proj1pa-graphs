@@ -6,7 +6,7 @@ using namespace std;
 int main(){
     
     Subject *rs, *pi2, *eps, *tppe, *ts, *mds, *oo, *apc, *comp, *ed1, *pp, *ads, *gces, *fse, *fso, *fac, *ted_ped, *ial, *pspd, *ed2, *frc, *sbd2, *sbd1, *md2, *md1, *pa, *qs, *gpq, *ee, *ihc, *diac, *hc, *mne, *c2, *c1, *f1, *f1e, *peae, *ea, *ie, *pi1;
-    set<Subject> materias;
+    priority_queue<Subject> materias;
     //cadastro de matérias
     pi2 = new Subject("Projeto Integrador 2", 208175, 6);
     eps = new Subject("Engenharia de Produto de Software", 203874, 4);
@@ -130,60 +130,52 @@ int main(){
     pi1->count_prerequisites(*pi1);
     rs->count_prerequisites(*rs);
 
-    materias.insert(*pi2);
-    materias.insert(*eps);
-    materias.insert(*tppe);
-    materias.insert(*ts);
-    materias.insert(*mds);
-    materias.insert(*oo);
-    materias.insert(*apc);
-    materias.insert(*comp);
-    materias.insert(*ed1);
-    materias.insert(*pp);
-    materias.insert(*ads);
-    materias.insert(*gces);
-    materias.insert(*fse);
-    materias.insert(*fso);
-    materias.insert(*fac);
-    materias.insert(*ted_ped);
-    materias.insert(*ial);
-    materias.insert(*pspd);
-    materias.insert(*ed2);
-    materias.insert(*frc);
-    materias.insert(*sbd2);
-    materias.insert(*sbd1);
-    materias.insert(*md2);
-    materias.insert(*md1);
-    materias.insert(*pa);
-    materias.insert(*qs);
-    materias.insert(*gpq);
-    materias.insert(*ee);
-    materias.insert(*ihc);
-    materias.insert(*diac);
-    materias.insert(*hc);
-    materias.insert(*mne);
-    materias.insert(*c2);
-    materias.insert(*c1);
-    materias.insert(*f1);
-    materias.insert(*f1e);
-    materias.insert(*peae);
-    materias.insert(*ea);
-    materias.insert(*ie);
-    materias.insert(*pi1);
-    materias.insert(*rs);
+    materias.push(*pi2);
+    materias.push(*eps);
+    materias.push(*tppe);
+    materias.push(*ts);
+    materias.push(*mds);
+    materias.push(*oo);
+    materias.push(*apc);
+    materias.push(*comp);
+    materias.push(*ed1);
+    materias.push(*pp);
+    materias.push(*ads);
+    materias.push(*gces);
+    materias.push(*fse);
+    materias.push(*fso);
+    materias.push(*fac);
+    materias.push(*ted_ped);
+    materias.push(*ial);
+    materias.push(*pspd);
+    materias.push(*ed2);
+    materias.push(*frc);
+    materias.push(*sbd2);
+    materias.push(*sbd1);
+    materias.push(*md2);
+    materias.push(*md1);
+    materias.push(*pa);
+    materias.push(*qs);
+    materias.push(*gpq);
+    materias.push(*ee);
+    materias.push(*ihc);
+    materias.push(*diac);
+    materias.push(*hc);
+    materias.push(*mne);
+    materias.push(*c2);
+    materias.push(*c1);
+    materias.push(*f1);
+    materias.push(*f1e);
+    materias.push(*peae);
+    materias.push(*ea);
+    materias.push(*ie);
+    materias.push(*pi1);
+    materias.push(*rs);
 
-    
-
-    for(auto p: materias){
-        p.show_subject();
-        cout << "quantity_prerequisites: " << p.quantity_prerequisites << endl;
-        cout<<"pre-requisites:"<<endl;
-        p.show_prerequisites();
-        cout<<"--------------------"<<endl;
-    } 
+ 
   
     priority_queue<Subject> subject_order = bfs_changed(*eps);
-    show_schedule(subject_order);
+    show_schedule(subject_order, &materias, 6);
   
     return 0;
 }

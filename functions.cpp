@@ -27,7 +27,7 @@ priority_queue<Subject> bfs_changed(Subject desired_subject){
 	return subjects_order;
 }
 
-void show_schedule(priority_queue<Subject> subjects_order){
+void show_schedule(priority_queue<Subject> subjects_order, priority_queue<Subject> *subjets_to_do, int max_subjects){
 	set<Subject> concluded_subjects;
 	for(int semester = 1; !subjects_order.empty(); semester++){
 		bool prerequisites_concluded = true;
@@ -46,13 +46,36 @@ void show_schedule(priority_queue<Subject> subjects_order){
 				subjects_order.pop();
 			}
 		}
-		cout << semester << "º semester: ";
+
+		semester_subjects = complete_schedule(semester_subjects, subjets_to_do, &concluded_subjects, max_subjects);
+
+		cout << semester << "º semester:\n";
 		while(!semester_subjects.empty()){
 			auto subject = semester_subjects.front();
-			cout << subject.name << " | ";
+			cout << subject.name << endl;
 			concluded_subjects.insert(subject);
 			semester_subjects.pop();
 		}
 		cout << endl;
 	}
+}
+
+queue<Subject> complete_schedule(queue<Subject> semester_subjects, priority_queue<Subject> *subjets_to_do, set<Subject> *concluded_subjects, int max_subjects){
+	bool prerequisites_concluded = true;
+	while(int(semester_subjects.size())!=max_subjects&&!subjets_to_do->empty()&&prerequisites_concluded){
+		auto subject = subjets_to_do->top();
+		for(auto prerequisite : subject.prerequisites){
+			if(concluded_subjects->count(*prerequisite) == 0){
+				prerequisites_concluded = false;
+			}
+		}
+		if(prerequisites_concluded){
+			if(concluded_subjects->count(subject)==0){
+				semester_subjects.push(subject);
+			}
+			subjets_to_do->pop();
+		}
+	}
+
+	return semester_subjects;
 }
