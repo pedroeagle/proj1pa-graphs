@@ -3,6 +3,8 @@ package com.pa.fluxo;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -30,6 +32,17 @@ public class Functions {
             }
         }
         return subjects_order;
+    }
+    ArrayList<Subject> sort (ArrayList<Subject> s){
+        int i, j;
+        for(i = 0; i!= s.size(); i++){
+            for(j = 0; j < s.size(); j++){
+                if(s.get(i).name.compareTo(s.get(j).name) < 0){
+                    Collections.swap(s, i, j);
+                }
+            }
+        }
+        return s;
     }
 
     /*void show_schedule(priority_queue<Subject> subjects_order){

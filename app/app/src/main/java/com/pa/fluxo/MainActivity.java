@@ -20,6 +20,7 @@ import static java.sql.DriverManager.println;
 
 
 public class MainActivity extends AppCompatActivity {
+    Functions f = new Functions();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         TextView text = (TextView) findViewById(R.id.textView);
         Subject t;
         //text.setText(pi2.name);
-        Functions f = new Functions();
+
         LinkedList<Subject> sub_list = new LinkedList<>();
         sub_list = f.bfs_changed(mds);
         String s = new String();
@@ -238,7 +239,7 @@ public class MainActivity extends AppCompatActivity {
         materias.add(ie);
         materias.add(pi1);
         materias.add(rs);
-
+        materias = f.sort(materias);
         ArrayList<String> names = new ArrayList<String>();
         int i;
         for(i = 0; i < materias.size(); i++){
