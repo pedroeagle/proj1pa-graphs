@@ -1,15 +1,20 @@
 package com.pa.fluxo;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -20,34 +25,22 @@ import static java.sql.DriverManager.println;
 
 
 public class MainActivity extends AppCompatActivity {
-    Functions f = new Functions();
+    String[] test = {"opa", "eba", "eita"};
+    ListView list;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //list.
+        list = (ListView) findViewById(R.id.listView);
+        ArrayAdapter<String> flow_array = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, test);
+        list.setAdapter(flow_array);
         Main();
-        TextView text = (TextView) findViewById(R.id.textView);
-        Subject t;
-        //text.setText(pi2.name);
-
-        LinkedList<Subject> sub_list = new LinkedList<>();
-        sub_list = f.bfs_changed(mds);
-        String s = new String();
-        for(Subject i: sub_list){
-            s+=i.name;
-        }
-        text.setText(s);
-
-
-
-
 
     }
-
-
     //Subject rs, pi2, eps, tppe, ts, mds, oo, apc, comp, ed1, pp, ads, gces, fse, fso, fac, ted_ped, ial, pspd, ed2, frc, sbd2, sbd1, md2, md1, pa, qs, gpq, ee, ihc, diac, hc, mne, c2, c1, f1, f1e, peae, ea, ie, pi1;
     ArrayList<Subject> materias = new ArrayList<Subject>();
-
+    Functions f = new Functions();
 
 
     //cadastro de matérias
@@ -113,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected void Main() {
-        Spinner select_subject = (Spinner) findViewById(R.id.my_spinner);
+
         materias.add(pi2);
 
 
@@ -240,6 +233,8 @@ public class MainActivity extends AppCompatActivity {
         materias.add(pi1);
         materias.add(rs);
         materias = f.sort(materias);
+
+        //prepara os dados a serem mostrados no spinner
         ArrayList<String> names = new ArrayList<String>();
         int i;
         for(i = 0; i < materias.size(); i++){
@@ -247,13 +242,35 @@ public class MainActivity extends AppCompatActivity {
         }
         List<String> list_subjects = new ArrayList<String>(names);
 
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+        final ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, names);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+
+
+        final Spinner select_subject = (Spinner) findViewById(R.id.my_spinner);
         select_subject.setAdapter(dataAdapter);
+        Button button = (Button) findViewById(R.id.make_flow);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                ChooseSubject(select_subject.getSelectedItemPosition());
+            }
+        });
+
+
 
         //pi2.show_prerequisites();
 
     }
+
+    private void ChooseSubject(int pos) {
+
+        f.bfs_changed(materias.get(pos));
+
+
+
+        //list.setAdapter(flow_array);
+    }
+
 
 }

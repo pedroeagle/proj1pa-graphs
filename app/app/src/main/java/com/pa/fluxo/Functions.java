@@ -7,15 +7,18 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 
 public class Functions {
     Functions(){
 
     }
+    public List<String> prerequisite_names = null;
     LinkedList<Subject> bfs_changed(Subject desired_subject){
         LinkedList<Subject> visited_subjects = new LinkedList<>();
         LinkedList<Subject> subjects_order = new LinkedList<>();
         LinkedList<Subject> to_visit = new LinkedList<>();
+
         to_visit.addLast(desired_subject);
         visited_subjects.addLast(desired_subject);
         subjects_order.addLast(desired_subject);
@@ -28,6 +31,7 @@ public class Functions {
                     visited_subjects.addLast(prerequisite);
                     to_visit.addLast(prerequisite);
                     subjects_order.addLast(prerequisite);
+                    prerequisite_names.add(prerequisite.name);
                 }
             }
         }
@@ -43,6 +47,16 @@ public class Functions {
             }
         }
         return s;
+    }
+
+    public String[] get_names_array(){
+        int i;
+        String[] names = null;
+        for(i = 0; i < prerequisite_names.size(); i++){
+            names[0] = prerequisite_names.get(i);
+        }
+
+        return names;
     }
 
     /*void show_schedule(priority_queue<Subject> subjects_order){
