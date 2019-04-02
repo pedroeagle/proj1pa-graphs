@@ -1,5 +1,6 @@
 package com.pa.fluxo;
 
+import android.util.Log;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -13,7 +14,37 @@ public class Functions {
     Functions(){
 
     }
-    public List<String> prerequisite_names = null;
+    public LinkedList<Subject> prerequisite_names = null;
+    /*LinkedList<Subject> bfs_changed(Subject desired_subject){
+        LinkedList<Subject> visited_subjects = new LinkedList<>();
+        LinkedList<Subject> subjects_order = new LinkedList<>();
+        LinkedList<Subject> to_visit = new LinkedList<>();
+        String[] bfs_prerequisites = null;
+        bfs_prerequisites[0]= desired_subject.name;
+        int i = 1;
+        to_visit.addLast(desired_subject);
+        visited_subjects.addLast(desired_subject);
+        subjects_order.addLast(desired_subject);
+        Toast t = null;
+        while(!to_visit.isEmpty()){
+            Subject subject = to_visit.getFirst();
+            to_visit.removeFirst();
+            for (Subject prerequisite :subject.prerequisites) {
+                if(visited_subjects.contains(prerequisite) != true){
+                    visited_subjects.addLast(prerequisite);
+                    to_visit.addLast(prerequisite);
+                    subjects_order.addLast(prerequisite);
+                    bfs_prerequisites[i] = prerequisite.name;
+                    i++;
+
+                    t.setText(i);
+
+                }
+            }
+            t.show();
+        }
+        return subjects_order;
+    }*/
     LinkedList<Subject> bfs_changed(Subject desired_subject){
         LinkedList<Subject> visited_subjects = new LinkedList<>();
         LinkedList<Subject> subjects_order = new LinkedList<>();
@@ -22,7 +53,6 @@ public class Functions {
         to_visit.addLast(desired_subject);
         visited_subjects.addLast(desired_subject);
         subjects_order.addLast(desired_subject);
-
         while(!to_visit.isEmpty()){
             Subject subject = to_visit.getFirst();
             to_visit.removeFirst();
@@ -31,7 +61,6 @@ public class Functions {
                     visited_subjects.addLast(prerequisite);
                     to_visit.addLast(prerequisite);
                     subjects_order.addLast(prerequisite);
-                    prerequisite_names.add(prerequisite.name);
                 }
             }
         }
@@ -53,7 +82,7 @@ public class Functions {
         int i;
         String[] names = null;
         for(i = 0; i < prerequisite_names.size(); i++){
-            names[0] = prerequisite_names.get(i);
+            names[0] = prerequisite_names.get(i).name;
         }
 
         return names;

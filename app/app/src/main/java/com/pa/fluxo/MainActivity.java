@@ -25,16 +25,12 @@ import static java.sql.DriverManager.println;
 
 
 public class MainActivity extends AppCompatActivity {
-    String[] test = {"opa", "eba", "eita"};
     ListView list;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //list.
-        list = (ListView) findViewById(R.id.listView);
-        ArrayAdapter<String> flow_array = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, test);
-        list.setAdapter(flow_array);
         Main();
 
     }
@@ -106,7 +102,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected void Main() {
-
         materias.add(pi2);
 
 
@@ -247,13 +242,12 @@ public class MainActivity extends AppCompatActivity {
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
 
-
         final Spinner select_subject = (Spinner) findViewById(R.id.my_spinner);
         select_subject.setAdapter(dataAdapter);
         Button button = (Button) findViewById(R.id.make_flow);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                ChooseSubject(select_subject.getSelectedItemPosition());
+                ShowList(get_subject(select_subject.getSelectedItem().toString()));
             }
         });
 
@@ -262,14 +256,35 @@ public class MainActivity extends AppCompatActivity {
         //pi2.show_prerequisites();
 
     }
+    private void ShowList(Subject subject) {
+        //TextView t = (TextView) findViewById(R.id.textView);
+        LinkedList<Subject> s = f.bfs_changed(get_subject(subject.name));
+        String[] prerequisites = new String[s.size()];
+        int i;
+        for(i = 0; i < s.size(); i++){
+            prerequisites[i]=s.get(s.size()-i-1).name;
+        }
+        list = (ListView) findViewById(R.id.listView);
+        ArrayAdapter<String> flow_array = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, prerequisites);
+        list.setAdapter(flow_array);
+        /*TextView t = (TextView) findViewById(R.id.textView);
+        t.setText(f.bfs_changed(subject)[0]);*/
+    }
 
-    private void ChooseSubject(int pos) {
 
-        f.bfs_changed(materias.get(pos));
-
-
+    private void ChooseSubject(Object subject) {
 
         //list.setAdapter(flow_array);
+    }
+
+    Subject get_subject(String name){
+        Subject found = null;
+        for(Subject i: materias){
+            if(i.name.compareTo(name) == 0){
+                found = i;
+            }
+        }
+        return found;
     }
 
 
