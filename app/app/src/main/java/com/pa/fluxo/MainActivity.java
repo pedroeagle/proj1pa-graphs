@@ -26,13 +26,27 @@ import static java.sql.DriverManager.println;
 
 public class MainActivity extends AppCompatActivity {
     ListView list;
+    private Button button;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //list.
         Main();
+        button = findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openWebPage();
+            }
 
+
+        });
+
+    }
+    private void openWebPage() {
+        Intent intent = new Intent(this, WebPage.class);
+        startActivity(intent);
     }
     //Subject rs, pi2, eps, tppe, ts, mds, oo, apc, comp, ed1, pp, ads, gces, fse, fso, fac, ted_ped, ial, pspd, ed2, frc, sbd2, sbd1, md2, md1, pa, qs, gpq, ee, ihc, diac, hc, mne, c2, c1, f1, f1e, peae, ea, ie, pi1;
     ArrayList<Subject> materias = new ArrayList<Subject>();
