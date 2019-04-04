@@ -60,4 +60,37 @@ public class Functions {
         }
         return s;
     }
+
+    LinkedList<Integer> semesterSeparator(LinkedList<Subject> subjects_order) {
+        LinkedList<Subject> concluded_subjects = new LinkedList<Subject>();
+        LinkedList<Integer> semester_number = new LinkedList<Integer>();
+        LinkedList<Subject> semester_subject = new LinkedList<Subject>();
+
+        for (int semester = 1; subjects_order.size() > 0; semester++){
+            boolean prerequisites_concluded = true;
+            while ((prerequisites_concluded == true) && (subjects_order.size() > 0)) {
+                Subject subject = subjects_order.getLast();
+                if (subject.quantity_prerequisites > 0) {
+                    for (Subject p : subject.prerequisites) {
+                        if (concluded_subjects.contains(p) == false) {
+                            prerequisites_concluded = false;
+                        }
+                    }
+                }
+                if (prerequisites_concluded) {
+                    if (concluded_subjects.contains(subject) == false) {
+                        semester_number.addLast(semester);
+                        semester_subject.addLast(subject);
+                    }
+                    subjects_order.removeLast();
+                }
+            }
+            while(semester_subject.size()>0){
+                concluded_subjects.add(semester_subject.getLast());
+                semester_subject.removeLast();
+            }
+        }
+        return semester_number;
+
+    }
 }

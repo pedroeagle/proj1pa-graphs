@@ -223,6 +223,7 @@ public class MainActivity extends AppCompatActivity {
 
         LinkedList<Subject> s = f.bfs_changed(get_subject(subject.name));
         s = f.sortLinked(s);
+        LinkedList<Integer> semesterOrder = f.semesterSeparator(s);
         final String[] prerequisites = new String[s.size()];
         int i;
         for(i = 0; i < s.size(); i++){
