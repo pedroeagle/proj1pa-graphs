@@ -5,21 +5,13 @@ import android.content.DialogInterface;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebView;
 import android.net.http.*;
 import android.webkit.WebViewClient;
 
-import java.io.ByteArrayInputStream;
-import java.security.cert.Certificate;
-import java.security.cert.CertificateFactory;
-import java.security.cert.X509Certificate;
-
-import javax.net.ssl.X509TrustManager;
-
 public class WebPage extends AppCompatActivity {
-
+    public static int code;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,8 +20,7 @@ public class WebPage extends AppCompatActivity {
         WebView webview = new WebView(this);
         setContentView(webview);
         webview.getSettings().setJavaScriptEnabled(true);
-        webview.loadUrl("https://matriculaweb.unb.br/graduacao/disciplina.aspx?cod=113042");
-
+        webview.loadUrl("https://matriculaweb.unb.br/graduacao/disciplina.aspx?cod="+code);
 
         webview.setWebViewClient(new WebViewClient(){
             @Override
@@ -73,15 +64,5 @@ public class WebPage extends AppCompatActivity {
         });
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
-
-
     }
-
-
-
-
-
-     //added this import statement
-
-
 }

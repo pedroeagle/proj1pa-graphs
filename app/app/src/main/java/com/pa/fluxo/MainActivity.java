@@ -3,26 +3,14 @@ package com.pa.fluxo;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import org.w3c.dom.Text;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.List;
-import java.util.Vector;
-
-import static java.sql.DriverManager.println;
-
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,27 +19,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //list.
         Main();
-        button = findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openWebPage();
-            }
-
-
-        });
 
     }
     private void openWebPage() {
         Intent intent = new Intent(this, WebPage.class);
         startActivity(intent);
     }
-    //Subject rs, pi2, eps, tppe, ts, mds, oo, apc, comp, ed1, pp, ads, gces, fse, fso, fac, ted_ped, ial, pspd, ed2, frc, sbd2, sbd1, md2, md1, pa, qs, gpq, ee, ihc, diac, hc, mne, c2, c1, f1, f1e, peae, ea, ie, pi1;
     ArrayList<Subject> materias = new ArrayList<Subject>();
     Functions f = new Functions();
-
 
     //cadastro de matérias
     Subject pi2 = new Subject("Projeto Integrador 2", 208175, 6);
@@ -60,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     Subject ts = new Subject("Testes de Software", 206580, 4);
     Subject mds = new Subject("Métodos de Desenvolvimento de Software", 193640, 4);
     Subject oo = new Subject("Orientação a Objetos", 195341, 4);
-    Subject apc = new Subject("Algorítmos e Programação de Computadores", 12345, 4);
+    Subject apc = new Subject("Algorítmos e Programação de Computadores", 113476, 4);
     Subject comp = new Subject("Compiladores 1", 101095, 4);
     Subject ed1 = new Subject("Estrutura de Dados 1", 193704, 4);
     Subject pp = new Subject("Paradigmas de Programação", 203904, 4);
@@ -96,12 +72,7 @@ public class MainActivity extends AppCompatActivity {
     Subject pi1 = new Subject("Projeto Integrador de Engenharia 1", 193861, 4);
     Subject rs = new Subject("Requisitos de Software", 201308, 4);
 
-
-
     protected void Main() {
-        materias.add(pi2);
-
-
         //inserção de pré-requisitos
         pi2.add_prerequisite(eps);
         eps.add_prerequisite(tppe);
@@ -182,8 +153,7 @@ public class MainActivity extends AppCompatActivity {
         pi1.count_prerequisites(pi1);
         rs.count_prerequisites(rs);
 
-
-
+        materias.add(pi2);
         materias.add(eps);
         materias.add(tppe);
         materias.add(ts);
@@ -232,7 +202,6 @@ public class MainActivity extends AppCompatActivity {
         for(i = 0; i < materias.size(); i++){
             names.add(materias.get(i).name);
         }
-        List<String> list_subjects = new ArrayList<String>(names);
 
         final ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, names);
@@ -241,37 +210,41 @@ public class MainActivity extends AppCompatActivity {
 
         final Spinner select_subject = (Spinner) findViewById(R.id.my_spinner);
         select_subject.setAdapter(dataAdapter);
+
         Button button = (Button) findViewById(R.id.make_flow);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 ShowList(get_subject(select_subject.getSelectedItem().toString()));
             }
         });
-
-
-
-        //pi2.show_prerequisites();
-
     }
+
     private void ShowList(Subject subject) {
-        //TextView t = (TextView) findViewById(R.id.textView);
+
         LinkedList<Subject> s = f.bfs_changed(get_subject(subject.name));
         s = f.sortLinked(s);
-        String[] prerequisites = new String[s.size()];
+        final String[] prerequisites = new String[s.size()];
         int i;
         for(i = 0; i < s.size(); i++){
             prerequisites[i]=s.get(s.size()-i-1).name;
         }
-        ListView list = null;
-        list = (ListView) findViewById(R.id.listView);
+        final ListView list =  (ListView) findViewById(R.id.listView);
         ArrayAdapter<String> flow_array = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, prerequisites);
         list.setAdapter(flow_array);
+
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                showWebPage(get_id(prerequisites[position]));
+            }
+        });
+
     }
 
-
-    private void ChooseSubject(Object subject) {
-
-        //list.setAdapter(flow_array);
+    private void showWebPage(int code) {
+        WebPage.code = code;
+        openWebPage();
     }
 
     Subject get_subject(String name){
@@ -284,5 +257,13 @@ public class MainActivity extends AppCompatActivity {
         return found;
     }
 
-
+    int get_id(String name){
+        int found = 0;
+        for(Subject i: materias){
+            if(i.name.compareTo(name) == 0){
+                found = i.code;
+            }
+        }
+        return found;
+    }
 }
