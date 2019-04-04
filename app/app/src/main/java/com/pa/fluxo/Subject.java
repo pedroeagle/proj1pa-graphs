@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;
 
@@ -65,6 +66,25 @@ public class Subject {
         s.add("Code: "+ code);
         s.add("Credits: " + credits);
         return s;
+    }
+
+    void count_prerequisites(Subject subject){
+        LinkedList<Subject> visited_subjects = new LinkedList<>();
+        LinkedList<Subject> to_visit = new LinkedList<>();
+
+        to_visit.addLast(subject);
+        visited_subjects.addLast(subject);
+        while(!to_visit.isEmpty()) {
+            Subject s = to_visit.getFirst();
+            to_visit.removeFirst();
+            for (Subject prerequisite : s.prerequisites) {
+                if (!visited_subjects.contains(prerequisite)) {
+                    visited_subjects.addLast(prerequisite);
+                    to_visit.addLast(prerequisite);
+                }
+            }
+        }
+        subject.quantity_prerequisites = visited_subjects.size()-1;
     }
 
 

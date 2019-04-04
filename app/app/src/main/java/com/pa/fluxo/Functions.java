@@ -1,6 +1,9 @@
 package com.pa.fluxo;
 
 import android.util.Log;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -68,9 +71,21 @@ public class Functions {
     }
     ArrayList<Subject> sort (ArrayList<Subject> s){
         int i, j;
-        for(i = 0; i!= s.size(); i++){
+        for(i = 0; i < s.size(); i++){
             for(j = 0; j < s.size(); j++){
                 if(s.get(i).name.compareTo(s.get(j).name) < 0){
+                    Collections.swap(s, i, j);
+                }
+            }
+        }
+        return s;
+    }
+
+    LinkedList<Subject> sortLinked(LinkedList<Subject> s){
+        int i, j;
+        for(i = 0; i < s.size(); i++){
+            for(j = 0; j < s.size(); j++){
+                if(s.get(i).quantity_prerequisites > s.get(j).quantity_prerequisites){
                     Collections.swap(s, i, j);
                 }
             }
@@ -88,33 +103,29 @@ public class Functions {
         return names;
     }
 
-    /*void show_schedule(priority_queue<Subject> subjects_order){
-        set<Subject> concluded_subjects;
-        for(int semester = 1; !subjects_order.empty(); semester++){
-            bool prerequisites_concluded = true;
-            queue<Subject> semester_subjects;
-            while(prerequisites_concluded&&!subjects_order.empty()){
-                auto subject = subjects_order.top();
-                for(auto prerequisite : subject.prerequisites){
-                    if(concluded_subjects.count(*prerequisite) == 0){
+    LinkedList<Subject> showSchedule(LinkedList<Subject> subjects_order, LinkedList<Subject> concluded_subjects) {
+        boolean prerequisites_concluded = true;
+        LinkedList<Subject> semester_subjects = new LinkedList<Subject>();
+        while ((prerequisites_concluded == true) && (subjects_order.size() > 0)) {
+            Subject subject = subjects_order.getFirst();
+            if(subject.quantity_prerequisites>0) {
+                for (Subject p: subject.prerequisites){
+
+
+                    if (concluded_subjects.contains(p) == false) {
                         prerequisites_concluded = false;
                     }
                 }
-                if(prerequisites_concluded){
-                    if(concluded_subjects.count(subject)==0){
-                        semester_subjects.push(subject);
-                    }
-                    subjects_order.pop();
+            }
+            if (prerequisites_concluded) {
+                if (concluded_subjects.contains(subject) == false) {
+                    semester_subjects.addLast(subject);
                 }
+                subjects_order.removeFirst();
             }
-            cout << semester << "º semester: ";
-            while(!semester_subjects.empty()){
-                auto subject = semester_subjects.front();
-                cout << subject.name << " | ";
-                concluded_subjects.insert(subject);
-                semester_subjects.pop();
-            }
-            cout << endl;
         }
-    }*/
+        return semester_subjects;
+
+    }
+
 }
