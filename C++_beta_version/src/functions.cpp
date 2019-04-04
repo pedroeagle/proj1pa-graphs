@@ -1,4 +1,4 @@
-#include "graphs.hpp"
+#include "subject.hpp"
 #include "functions.hpp"
 #include <bits/stdc++.h>
 
@@ -48,7 +48,8 @@ void show_schedule(priority_queue<Subject> subjects_order, priority_queue<Subjec
 		}
 
 		semester_subjects = complete_schedule(semester_subjects, subjets_to_do, &concluded_subjects, max_subjects);
-
+		if(semester == 1)
+			cout << "--------------------------------------------------\n";
 		cout << semester << "º semester:\n";
 		while(!semester_subjects.empty()){
 			auto subject = semester_subjects.front();
@@ -56,11 +57,17 @@ void show_schedule(priority_queue<Subject> subjects_order, priority_queue<Subjec
 			concluded_subjects.insert(subject);
 			semester_subjects.pop();
 		}
-		cout << endl;
+		cout << "--------------------------------------------------\n";
 	}
 }
 
 queue<Subject> complete_schedule(queue<Subject> semester_subjects, priority_queue<Subject> *subjets_to_do, set<Subject> *concluded_subjects, int max_subjects){
+	for(int i=0; i<int(semester_subjects.size()); ++i){
+		concluded_subjects->insert(semester_subjects.front());
+		semester_subjects.push(semester_subjects.front());
+		semester_subjects.pop();
+	}
+
 	bool prerequisites_concluded = true;
 	while(int(semester_subjects.size())!=max_subjects&&!subjets_to_do->empty()&&prerequisites_concluded){
 		auto subject = subjets_to_do->top();
@@ -75,6 +82,10 @@ queue<Subject> complete_schedule(queue<Subject> semester_subjects, priority_queu
 			}
 			subjets_to_do->pop();
 		}
+	}
+
+	while(int(semester_subjects.size()) < max_subjects){
+		semester_subjects.push(Subject("Matéria optativa", 0, 0));
 	}
 
 	return semester_subjects;

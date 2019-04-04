@@ -1,5 +1,5 @@
 #include <iostream>
-#include "graphs.hpp"
+#include "subject.hpp"
 Subject::Subject(){ 
  
 }
@@ -61,7 +61,7 @@ void Subject::count_prerequisites(Subject subject){
 
 bool Subject::operator<(const Subject &subject) const{
 	if(quantity_prerequisites==subject.quantity_prerequisites){
-		return name < subject.name;
+		return name > subject.name;
 	}
 	return quantity_prerequisites > subject.quantity_prerequisites;
 }
