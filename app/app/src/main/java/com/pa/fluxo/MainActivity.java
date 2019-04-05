@@ -8,8 +8,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 
 public class MainActivity extends AppCompatActivity {
@@ -221,23 +223,28 @@ public class MainActivity extends AppCompatActivity {
 
     private void ShowList(Subject subject) {
 
-        LinkedList<Subject> s = f.bfs_changed(get_subject(subject.name));
-        s = f.sortLinked(s);
+        final LinkedList<Subject> s = f.sortLinked(f.bfs_changed(get_subject(subject.name)));
         LinkedList<Integer> semesterOrder = f.semesterSeparator(s);
-        final String[] prerequisites = new String[s.size()];
+        final ArrayList<HashMap<String, String>> data;
+        data = new ArrayList<HashMap<String, String>>();
+        //final String[] prerequisites = new String[s.size()];
         int i;
         for(i = 0; i < s.size(); i++){
-            prerequisites[i]=s.get(s.size()-i-1).name;
+            HashMap<String,String> aux = new HashMap<String, String>();
+            aux.put("Subject", s.get(s.size()-i-1).name);
+            aux.put("Semester", semesterOrder.get(i).toString()+"º semestre");
+            data.add(aux);
         }
         final ListView list =  (ListView) findViewById(R.id.listView);
-        ArrayAdapter<String> flow_array = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, prerequisites);
+        //ArrayAdapter<String> flow_array = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, prerequisites);
+        SimpleAdapter flow_array = new SimpleAdapter(this, data, android.R.layout.simple_list_item_2, new String[] {"Subject", "Semester"}, new int[]{android.R.id.text1, android.R.id.text2});
         list.setAdapter(flow_array);
 
 
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                showWebPage(get_id(prerequisites[position]));
+                showWebPage(get_id(s.get(s.size()-position-1).name));
             }
         });
 
@@ -263,6 +270,7 @@ public class MainActivity extends AppCompatActivity {
         for(Subject i: materias){
             if(i.name.compareTo(name) == 0){
                 found = i.code;
+                break;
             }
         }
         return found;

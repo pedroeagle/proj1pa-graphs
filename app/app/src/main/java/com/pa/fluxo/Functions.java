@@ -65,11 +65,12 @@ public class Functions {
         LinkedList<Subject> concluded_subjects = new LinkedList<Subject>();
         LinkedList<Integer> semester_number = new LinkedList<Integer>();
         LinkedList<Subject> semester_subject = new LinkedList<Subject>();
-
-        for (int semester = 1; subjects_order.size() > 0; semester++){
+        LinkedList<Subject> new_list = new LinkedList<>();
+        new_list = (LinkedList) subjects_order.clone();
+        for (int semester = 1; new_list.size() > 0; semester++){
             boolean prerequisites_concluded = true;
-            while ((prerequisites_concluded == true) && (subjects_order.size() > 0)) {
-                Subject subject = subjects_order.getLast();
+            while ((prerequisites_concluded == true) && (new_list.size() > 0)) {
+                Subject subject = new_list.getLast();
                 if (subject.quantity_prerequisites > 0) {
                     for (Subject p : subject.prerequisites) {
                         if (concluded_subjects.contains(p) == false) {
@@ -82,7 +83,7 @@ public class Functions {
                         semester_number.addLast(semester);
                         semester_subject.addLast(subject);
                     }
-                    subjects_order.removeLast();
+                    new_list.removeLast();
                 }
             }
             while(semester_subject.size()>0){
