@@ -7,11 +7,12 @@ O intuito é mapear todo o fluxo como um grafo, e utilizando o algorítmo de bus
 ## Funcionalidades:
 
 Você pode escolher uma matéria clicando na caixa de seleção. Será aberta a lista de matérias obrigatórias, selecione a matéria desejada e pressione o botão FLOW. Será gerada uma lista de opções com o nome das matérias pré-requisitos da matéria selecionada e o semestre mais otimizado possível. Selecionando uma das matérias da nova lista gerada, será aberta uma versão "mobile" do Matrícula Web mostrando mais informações sobre a matéria assim como ementa, outros possíveis pré-requisitos além da oferta no semestre recorrente. É possível até mesmo logar em sua conta e fazer a matrícula diretamente pelo app.
-
+<p float="left">
 <img src="./imgs/print1.jpg" width="200"/>
 <img src="./imgs/print2.jpg" width="200"/>
 <img src="./imgs/print3.jpg" width="200"/>
 <img src="./imgs/print4.jpg" width="200"/>
+</p>
 
 Imagens reais do aplicativo. Fonte própria.
 
@@ -40,6 +41,7 @@ Clone o repositório em seu computador
     git clone https://github.com/projeto-de-algoritmos/proj1pa-graphs
 
 Abra o Android Studio e clique em "Open an existing Android Studio project"
+
 <img src="./imgs/1.png"/>
 
 Procure pelo pasta do repositório clonado e selecione o diretório "app"
