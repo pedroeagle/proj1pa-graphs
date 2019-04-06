@@ -17,7 +17,7 @@ public class Functions {
     Functions(){
 
     }
-    LinkedList<Subject> bfs_changed(Subject desired_subject){
+    LinkedList<Subject> BfsChanged(Subject desired_subject){
         LinkedList<Subject> visited_subjects = new LinkedList<>();
         LinkedList<Subject> subjects_order = new LinkedList<>();
         LinkedList<Subject> to_visit = new LinkedList<>();
@@ -38,7 +38,7 @@ public class Functions {
         }
         return subjects_order;
     }
-    ArrayList<Subject> sort (ArrayList<Subject> s){
+    ArrayList<Subject> Sort (ArrayList<Subject> s){
         int i, j;
         for(i = 0; i < s.size(); i++){
             for(j = 0; j < s.size(); j++){

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Otimizador de Fluxo</string>
+    <string name="app_name">Otimizador de Fluxo: Engenharia de Software</string>
     <string name="flow">Flow</string>
     <string name="textview">TextView</string>
     <string name="button">Button</string>

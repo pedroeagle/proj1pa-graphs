@@ -16,13 +16,13 @@ public class Subject {
         this.code = code;
         this.credits = credits;
     }
-    public void add_prerequisite(Subject subject){
+    public void addPrerequisite(Subject subject){
         if(subject!=null) {
             prerequisites.add(subject);
         }
     }
 
-    void count_prerequisites(Subject subject){
+    void countPrerequisites(Subject subject){
         LinkedList<Subject> visited_subjects = new LinkedList<>();
         LinkedList<Subject> to_visit = new LinkedList<>();
 

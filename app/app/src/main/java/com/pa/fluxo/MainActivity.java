@@ -76,84 +76,84 @@ public class MainActivity extends AppCompatActivity {
 
     protected void Main() {
         //inserção de pré-requisitos
-        pi2.add_prerequisite(eps);
-        eps.add_prerequisite(tppe);
-        gces.add_prerequisite(ts);
-        tppe.add_prerequisite(ts);
-        tppe.add_prerequisite(ads);
-        pp.add_prerequisite(comp);
-        pp.add_prerequisite(oo);
-        fse.add_prerequisite(fso);
-        pspd.add_prerequisite(frc);
-        qs.add_prerequisite(ihc);
-        qs.add_prerequisite(gpq);
-        ts.add_prerequisite(mds);
-        ads.add_prerequisite(rs);
-        frc.add_prerequisite(fso);
-        sbd2.add_prerequisite(sbd1);
-        pa.add_prerequisite(ed1);
-        pa.add_prerequisite(c1);
-        ihc.add_prerequisite(mds);
-        ihc.add_prerequisite(diac);
-        rs.add_prerequisite(mds);
-        sbd1.add_prerequisite(md2);
-        fso.add_prerequisite(fac);
-        comp.add_prerequisite(ed1);
-        ed2.add_prerequisite(ed1);
-        gpq.add_prerequisite(ee);
-        mds.add_prerequisite(oo);
-        ed1.add_prerequisite(apc);
-        fac.add_prerequisite(ted_ped);
-        md2.add_prerequisite(md1);
-        pi1.add_prerequisite(oo);
-        mne.add_prerequisite(c2);
-        ted_ped.add_prerequisite(ial);
-        oo.add_prerequisite(apc);
-        c2.add_prerequisite(c1);
-        peae.add_prerequisite(c1);
+        pi2.addPrerequisite(eps);
+        eps.addPrerequisite(tppe);
+        gces.addPrerequisite(ts);
+        tppe.addPrerequisite(ts);
+        tppe.addPrerequisite(ads);
+        pp.addPrerequisite(comp);
+        pp.addPrerequisite(oo);
+        fse.addPrerequisite(fso);
+        pspd.addPrerequisite(frc);
+        qs.addPrerequisite(ihc);
+        qs.addPrerequisite(gpq);
+        ts.addPrerequisite(mds);
+        ads.addPrerequisite(rs);
+        frc.addPrerequisite(fso);
+        sbd2.addPrerequisite(sbd1);
+        pa.addPrerequisite(ed1);
+        pa.addPrerequisite(c1);
+        ihc.addPrerequisite(mds);
+        ihc.addPrerequisite(diac);
+        rs.addPrerequisite(mds);
+        sbd1.addPrerequisite(md2);
+        fso.addPrerequisite(fac);
+        comp.addPrerequisite(ed1);
+        ed2.addPrerequisite(ed1);
+        gpq.addPrerequisite(ee);
+        mds.addPrerequisite(oo);
+        ed1.addPrerequisite(apc);
+        fac.addPrerequisite(ted_ped);
+        md2.addPrerequisite(md1);
+        pi1.addPrerequisite(oo);
+        mne.addPrerequisite(c2);
+        ted_ped.addPrerequisite(ial);
+        oo.addPrerequisite(apc);
+        c2.addPrerequisite(c1);
+        peae.addPrerequisite(c1);
 
         //Contagem de pré requisitos
-        pi2.count_prerequisites(pi2);
-        eps.count_prerequisites(eps);
-        tppe.count_prerequisites(tppe);
-        ts.count_prerequisites(ts);
-        mds.count_prerequisites(mds);
-        oo.count_prerequisites(oo);
-        apc.count_prerequisites(apc);
-        comp.count_prerequisites(comp);
-        ed1.count_prerequisites(ed1);
-        pp.count_prerequisites(pp);
-        ads.count_prerequisites(ads);
-        gces.count_prerequisites(gces);
-        fse.count_prerequisites(fse);
-        fso.count_prerequisites(fso);
-        fac.count_prerequisites(fac);
-        ted_ped.count_prerequisites(ted_ped);
-        ial.count_prerequisites(ial);
-        pspd.count_prerequisites(pspd);
-        ed2.count_prerequisites(ed2);
-        frc.count_prerequisites(frc);
-        sbd2.count_prerequisites(sbd2);
-        sbd1.count_prerequisites(sbd1);
-        md2.count_prerequisites(md2);
-        md1.count_prerequisites(md1);
-        pa.count_prerequisites(pa);
-        qs.count_prerequisites(qs);
-        gpq.count_prerequisites(gpq);
-        ee.count_prerequisites(ee);
-        ihc.count_prerequisites(ihc);
-        diac.count_prerequisites(diac);
-        hc.count_prerequisites(hc);
-        mne.count_prerequisites(mne);
-        c2.count_prerequisites(c2);
-        c1.count_prerequisites(c1);
-        f1.count_prerequisites(f1);
-        f1e.count_prerequisites(f1e);
-        peae.count_prerequisites(peae);
-        ea.count_prerequisites(ea);
-        ie.count_prerequisites(ie);
-        pi1.count_prerequisites(pi1);
-        rs.count_prerequisites(rs);
+        pi2.countPrerequisites(pi2);
+        eps.countPrerequisites(eps);
+        tppe.countPrerequisites(tppe);
+        ts.countPrerequisites(ts);
+        mds.countPrerequisites(mds);
+        oo.countPrerequisites(oo);
+        apc.countPrerequisites(apc);
+        comp.countPrerequisites(comp);
+        ed1.countPrerequisites(ed1);
+        pp.countPrerequisites(pp);
+        ads.countPrerequisites(ads);
+        gces.countPrerequisites(gces);
+        fse.countPrerequisites(fse);
+        fso.countPrerequisites(fso);
+        fac.countPrerequisites(fac);
+        ted_ped.countPrerequisites(ted_ped);
+        ial.countPrerequisites(ial);
+        pspd.countPrerequisites(pspd);
+        ed2.countPrerequisites(ed2);
+        frc.countPrerequisites(frc);
+        sbd2.countPrerequisites(sbd2);
+        sbd1.countPrerequisites(sbd1);
+        md2.countPrerequisites(md2);
+        md1.countPrerequisites(md1);
+        pa.countPrerequisites(pa);
+        qs.countPrerequisites(qs);
+        gpq.countPrerequisites(gpq);
+        ee.countPrerequisites(ee);
+        ihc.countPrerequisites(ihc);
+        diac.countPrerequisites(diac);
+        hc.countPrerequisites(hc);
+        mne.countPrerequisites(mne);
+        c2.countPrerequisites(c2);
+        c1.countPrerequisites(c1);
+        f1.countPrerequisites(f1);
+        f1e.countPrerequisites(f1e);
+        peae.countPrerequisites(peae);
+        ea.countPrerequisites(ea);
+        ie.countPrerequisites(ie);
+        pi1.countPrerequisites(pi1);
+        rs.countPrerequisites(rs);
 
         materias.add(pi2);
         materias.add(eps);
@@ -196,7 +196,7 @@ public class MainActivity extends AppCompatActivity {
         materias.add(ie);
         materias.add(pi1);
         materias.add(rs);
-        materias = f.sort(materias);
+        materias = f.Sort(materias);
 
         //prepara os dados a serem mostrados no spinner
         ArrayList<String> names = new ArrayList<String>();
@@ -216,14 +216,14 @@ public class MainActivity extends AppCompatActivity {
         Button button = (Button) findViewById(R.id.make_flow);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                ShowList(get_subject(select_subject.getSelectedItem().toString()));
+                showList(getSubject(select_subject.getSelectedItem().toString()));
             }
         });
     }
 
-    private void ShowList(Subject subject) {
+    private void showList(Subject subject) {
 
-        final LinkedList<Subject> s = f.sortLinked(f.bfs_changed(get_subject(subject.name)));
+        final LinkedList<Subject> s = f.sortLinked(f.BfsChanged(getSubject(subject.name)));
         LinkedList<Integer> semesterOrder = f.semesterSeparator(s);
         final ArrayList<HashMap<String, String>> data;
         data = new ArrayList<HashMap<String, String>>();
@@ -244,7 +244,7 @@ public class MainActivity extends AppCompatActivity {
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                showWebPage(get_id(s.get(s.size()-position-1).name));
+                showWebPage(getId(s.get(s.size()-position-1).name));
             }
         });
 
@@ -255,7 +255,7 @@ public class MainActivity extends AppCompatActivity {
         openWebPage();
     }
 
-    Subject get_subject(String name){
+    Subject getSubject(String name){
         Subject found = null;
         for(Subject i: materias){
             if(i.name.compareTo(name) == 0){
@@ -265,7 +265,7 @@ public class MainActivity extends AppCompatActivity {
         return found;
     }
 
-    int get_id(String name){
+    int getId(String name){
         int found = 0;
         for(Subject i: materias){
             if(i.name.compareTo(name) == 0){
