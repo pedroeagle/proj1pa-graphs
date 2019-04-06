@@ -19,10 +19,10 @@ Imagens reais do aplicativo. Fonte própria.
 
 ## Requisitos:
 Caso queira visualizar o código, fazer alterações e executar:
-- Ter a versão mais recente da IDE da Google para Android: [Android Studio](developer.android.com)
+- Ter a versão mais recente da IDE da Google para Android: [Android Studio](http://developer.android.com)
 
 Caso queira apenas instalar em seu dispositivo o apk:
-- Baixar a última versão do apk [AQUI](https://raw.githubusercontent.com/projeto-de-algoritmos/proj1pa-graphs/master/APK/OtimizadorDeFluxoEngSoftware-v1.0.apk).
+- Baixar a última versão do apk [AQUI](https://raw.githubusercontent.com/pedroeagle/App-PA/master/APK/OtimizadorDeFluxoEngSoftware-v1.0.apk).
 
 Para ambos os casos:
 - Um dispositivo ou emulador com android 4.4 ou superior. (Foi testado apenas no Android 7.1.2 e o 8.0)
