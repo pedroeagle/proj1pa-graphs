@@ -33,7 +33,7 @@ Para ambos os casos:
   
 <img src="./imgs/print5.jpg" width="200"/>
 
-- Baixe o apk [AQUI](https://raw.githubusercontent.com/projeto-de-algoritmos/proj1pa-graphs/master/APK/OtimizadorDeFluxoEngSoftware-v1.0.apk).
+- Baixe o apk [AQUI](https://raw.githubusercontent.com/pedroeagle/App-PA/master/APK/OtimizadorDeFluxoEngSoftware-v1.0.apk).
 - Com um gerenciador de arquivos procure pelo aquivo .apk, selecione e instale.
 
 ## Executando o código fonte no Android Studio
